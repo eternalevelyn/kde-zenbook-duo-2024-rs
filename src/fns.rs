@@ -4,10 +4,12 @@ use std::sync::mpsc;
 use std::path::Path;
 
 pub fn start() {
-    Command::new("kscreen-doctor").arg("output.eDP-1.enable").spawn().unwrap();
-    Command::new("kscreen-doctor").arg("output.eDP-2.disable").spawn().unwrap();
-    Command::new("kscreen-doctor").arg("output.eDP-1.mode.2880x1800@120.00").spawn().unwrap();
-    Command::new("kscreen-doctor").arg("output.eDP-1.scale.1.75").spawn().unwrap();
+    Command::new("kscreen-doctor").arg("output.1.enable").spawn().unwrap();
+    Command::new("kscreen-doctor").arg("output.2.mode.2880x1800@120.00").spawn().unwrap();
+    Command::new("kscreen-doctor").arg("output.2.scale.1.75").spawn().unwrap();
+    Command::new("kscreen-doctor").arg("output.2.disable").spawn().unwrap();
+    Command::new("kscreen-doctor").arg("output.1.mode.2880x1800@120.00").spawn().unwrap();
+    Command::new("kscreen-doctor").arg("output.1.scale.1.75").spawn().unwrap();
 
 
 
@@ -22,19 +24,12 @@ pub fn addonautodetect() {
     for res in rx {
         let bool_change = Command::new("bash").arg("checkusb.sh").status().unwrap().success();
         if !bool_change {
-            Command::new("kscreen-doctor").arg("output.eDP-1.enable").spawn().unwrap();
-            Command::new("kscreen-doctor").arg("output.eDP-2.enable").spawn().unwrap();
-            Command::new("kscreen-doctor").arg("output.eDP-1.mode.2880x1800@120.00").spawn().unwrap();
-            Command::new("kscreen-doctor").arg("output.eDP-2.mode.2880x1800@120.00").spawn().unwrap();
-            Command::new("kscreen-doctor").arg("output.eDP-1.scale.1.75").spawn().unwrap();
-            Command::new("kscreen-doctor").arg("output.eDP-2.scale.1.75").spawn().unwrap();
-
+            Command::new("kscreen-doctor").arg("output.1.enable").spawn().unwrap();
+            Command::new("kscreen-doctor").arg("output.2.enable").spawn().unwrap();
         }
         else {
             Command::new("kscreen-doctor").arg("output.eDP-1.enable").spawn().unwrap();
             Command::new("kscreen-doctor").arg("output.eDP-2.disable").spawn().unwrap();
-            Command::new("kscreen-doctor").arg("output.eDP-1.mode.2880x1800@120.00").spawn().unwrap();
-            Command::new("kscreen-doctor").arg("output.eDP-1.scale.1.75").spawn().unwrap();
         };
     };
 }
