@@ -1,0 +1,8 @@
+[package]
+name = "zenbook-duo-2024-linux-rs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+detect-desktop-environment = "1.1.0"
+notify = "7.0.0"
